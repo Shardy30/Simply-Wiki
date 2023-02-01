@@ -135,6 +135,7 @@ body {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	margin-right: 50px;
 }
 
 .content-header-title {
@@ -151,10 +152,6 @@ body {
 	font-weight: 400;
 	font-size: 15px;
 	margin-top: 0;
-}
-
-.content-header-links {
-	margin-right: 50px;
 }
 
 .content-link {
@@ -178,15 +175,29 @@ body {
 	display: flex;
 	justify-content: center;
 	margin-bottom: 30px;
-	/* font-family: 'Open Sans', sans-serif; */
 }
 
+@media screen and (max-width: 480px) {
+	.radio-input-container {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: center;
+	}
+	.radio-container-1 {
+		align-self: flex-start;
+	}
+	.radio-container-2 {
+		align-self: flex-start;
+	}
+  }
+
 .radio-container-1 {
-	margin-right: 5px;
+	margin: 2px 5px 5px;
 }
 
 .radio-container-2 {
-	margin-left: 5px;
+	margin: 2px 5px;
 }
 
 a {
