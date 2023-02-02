@@ -122,6 +122,13 @@ body {
 	width: 800px;
 	border-radius: 10px;
 }
+@media screen and (max-width: 800px) {
+	.content-container {
+		background-color: #f9f9f9;
+		width: 100%;
+		border-radius: 10px;
+	}
+  }
 
 .content-header {
 	display: flex;
@@ -138,8 +145,22 @@ body {
 	margin-right: 50px;
 }
 
+@media screen and (max-width: 600px) {
+	.content-header-links {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		margin: 15px;
+  }
+}
+
 .content-header-title {
 	margin-left: 50px;
+}
+@media screen and (max-width: 600px) {
+	.content-header-title {
+		margin-left: 15px;
+	}
 }
 
 .content-name-title {
@@ -170,6 +191,20 @@ body {
 	font-family: 'Open Sans', sans-serif;
 	margin: 30px 65px;
 }
+@media screen and (max-width: 600px) {
+	.content-body {
+		font-family: 'Open Sans', sans-serif;
+		margin: 30px 20px;
+		font-size: small;
+	}
+  }
+@media screen and (max-width: 360px) {
+	.content-body {
+		font-family: 'Open Sans', sans-serif;
+		margin: 30px 20px;
+		font-size: smaller;
+	}
+  }
 
 .radio-input-container {
 	display: flex;
