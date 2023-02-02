@@ -10,7 +10,7 @@ const openai = new OpenAIApi(configuration);
 export default async function handler(req, res) {
   try {
     const result = 2*5
-    res.status(200).send({ result })
+    res.status(300).send({ result })
   } catch (err) {
     res.status(500).send({ error: 'failed to fetch data' })
   }

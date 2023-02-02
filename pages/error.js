@@ -6,8 +6,8 @@ export default function Error() {
   return (
     <>
       <Head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta charSet="UTF-8" />
+        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>SimplyWiki - Wikipedia Made Simple</title>
       </Head>
@@ -29,7 +29,7 @@ export default function Error() {
           <br />
           <i>Note: Only English Wikipedia pages are supported at this time.</i>
         </p>
-        <Link className="content-link" style={{"margin-bottom": "50px"}} href="/"><img className="content-icon" src="arrow.svg" alt="link icon" /> Home</Link>
+        <Link className="content-link" style={{"marginBottom": "50px"}} href="/"><img className="content-icon" src="arrow.svg" alt="link icon" /> Home</Link>
           
       </div>
       <Footer />

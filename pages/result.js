@@ -6,8 +6,8 @@ export default function Result() {
   return (
     <>
       <Head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta charSet="UTF-8" />
+        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>SimplyWiki - Wikipedia Made Simple</title>
       </Head>
@@ -41,10 +41,10 @@ export default function Result() {
                 <img className="content-icon" src="link.svg" alt="link icon" />
                 Article Link
               </a>
-              <a className="content-link" href="/">
+              <Link className="content-link" href="/">
                 <img className="content-icon" src="arrow.svg" alt="link icon" />
                 Home
-              </a>
+              </Link>
             </div>
           </div>
           <div className="content-body">

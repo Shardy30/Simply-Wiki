@@ -1,19 +1,40 @@
 import Router from 'next/router'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 
 const WikiForm = () => {
   const [wLink, setWLink] = useState("");
   const [sType, setSType] = useState("simple_summary");
+  const [checker, setChecker] = useState(0);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Perform the action for submitting the form
-    Router.push({
-      pathname: '/result',
-      query: { w_link: wLink, s_type: sType },
-    });
+    setChecker(1);
   };
+
+  const handlePageChange = (status) => {
+    if (status === 200) {
+      Router.push("/result");
+    } else {
+      Router.push("/error");
+    }
+  };
+
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    if(checker === 0) return;
+    async function fetchData() {
+      const res = await fetch("/api/wiki");
+      const json = await res.json();
+      const status = res.status;
+      setData(json);
+      handlePageChange(status);
+      console.log(json);
+      console.log(status);
+    }
+    fetchData();
+  }, [checker]);
 
   return (
     <form onSubmit={handleSubmit}>
