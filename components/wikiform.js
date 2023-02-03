@@ -11,6 +11,7 @@ const WikiForm = () => {
     event.preventDefault();
     form_ref.current.setAttribute("disabled", true); // Disable form
     simplify_button.current.innerHTML = "Simplifying...";
+    setLoading(true);
     setChecker(1);
   };
 
@@ -25,7 +26,14 @@ const WikiForm = () => {
   useEffect(() => {
     if(checker === 0) return;
     async function fetchData() {
-      const res = await fetch("/api/wiki");
+      const data = { w_link: wikiURL, s_type: wikiType };
+      const res = await fetch('/api/wiki', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
       const json = await res.json();
       const { title, summary } = json.result;
       setWikiTitle(title);
@@ -38,8 +46,10 @@ const WikiForm = () => {
 
   const simplify_button = useRef(null);
   const form_ref = useRef(null);
+  const [loading, setLoading] = useState(false);
 
   return (
+    <>
     <form onSubmit={handleSubmit} ref={form_ref} disabled={true}>
       <div className="input-container">
         <input
@@ -82,6 +92,8 @@ const WikiForm = () => {
         </div>
       </div>
     </form>
+    {loading?<div className='loader-container'><div className="lds-ring"><div></div><div></div><div></div><div></div></div></div>:null}
+    </>
   );
 };
 
