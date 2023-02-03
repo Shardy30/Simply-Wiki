@@ -10,6 +10,7 @@ export default function Home() {
         <meta charSet="UTF-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" href="../public/favicon.ico" />
         <title>SimplyWiki - Wikipedia Made Simple</title>
       </Head>
       <div className="header-container">
