@@ -12,7 +12,11 @@ export default function Error() {
         <title>SimplyWiki - Wikipedia Made Simple</title>
       </Head>
       <div className="header-container">
-        <img src="logo.png" alt="SimplyWiki Logo" className="header-logo-image" />
+        <img
+          src="logo.png"
+          alt="SimplyWiki Logo"
+          className="header-logo-image"
+        />
         <img
           src="logo-text.svg"
           alt="SimplyWiki Logo"
@@ -29,8 +33,13 @@ export default function Error() {
           <br />
           <i>Note: Only English Wikipedia pages are supported at this time.</i>
         </p>
-        <Link className="content-link" style={{"marginBottom": "50px"}} href="/"><img className="content-icon" src="arrow.svg" alt="link icon" /> Home</Link>
-          
+        <Link
+          className="content-link"
+          style={{ marginBottom: "50px" }}
+          href="/"
+        >
+          <img className="content-icon" src="arrow.svg" alt="link icon" /> Home
+        </Link>
       </div>
       <Footer />
     </>

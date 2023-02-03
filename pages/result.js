@@ -7,7 +7,7 @@ import AppContext from "@/AppContext";
 export default function Result() {
   const { wikiTitle, wikiSummary, wikiType, wikiURL } =
     React.useContext(AppContext);
-    // console.log(wikiTitle, wikiSummary, wikiType, wikiURL);
+  // console.log(wikiTitle, wikiSummary, wikiType, wikiURL);
   return (
     <>
       <Head>
@@ -35,16 +35,13 @@ export default function Result() {
             <div className="content-header-title">
               <h1 className="content-name-title">{wikiTitle}</h1>
               {wikiType === "simple_summary" ? (
-              <h3 className="content-name-type">Simplified Summary</h3>
+                <h3 className="content-name-type">Simplified Summary</h3>
               ) : (
-              <h3 className="content-name-type">Explained Like I'm 5</h3>)}
+                <h3 className="content-name-type">Explained Like I'm 5</h3>
+              )}
             </div>
             <div className="content-header-links">
-              <a
-                className="content-link"
-                target="_blank"
-                href={wikiURL}
-              >
+              <a className="content-link" target="_blank" href={wikiURL}>
                 <img className="content-icon" src="link.svg" alt="link icon" />
                 Article Link
               </a>
@@ -54,9 +51,7 @@ export default function Result() {
               </Link>
             </div>
           </div>
-          <div className="content-body">
-            {wikiSummary}
-          </div>
+          <div className="content-body">{wikiSummary}</div>
         </div>
       </div>
       <Footer />

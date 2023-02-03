@@ -1,11 +1,9 @@
 import Head from "next/head";
 import Footer from "@/components/footer";
 import WikiForm from "@/components/wikiform";
-import React, { useState, useEffect } from "react";
-import Router from "next/router";
+import React from "react";
 
 export default function Home() {
-
   return (
     <>
       <Head>
@@ -15,7 +13,11 @@ export default function Home() {
         <title>SimplyWiki - Wikipedia Made Simple</title>
       </Head>
       <div className="header-container">
-        <img src="logo.png" alt="SimplyWiki Logo" className="header-logo-image" />
+        <img
+          src="logo.png"
+          alt="SimplyWiki Logo"
+          className="header-logo-image"
+        />
         <img
           src="logo-text.svg"
           alt="SimplyWiki Logo"
@@ -23,7 +25,7 @@ export default function Home() {
         />
         <h2 className="header-subtext">Wikipedia Made Simple.</h2>
       </div>
-      <WikiForm/>
+      <WikiForm />
       <div className="info-container info-container-1">
         <h2 className="info-header info-header-1">What does it do?</h2>
         <p className="info-paragraph info-paragraph-1">
