@@ -1,14 +1,16 @@
 import Router from 'next/router'
-import { useState, useEffect } from 'react'
-
+import { useState, useEffect, useRef, useContext } from 'react'
+import AppContext from '../AppContext'
 
 const WikiForm = () => {
-  const [wLink, setWLink] = useState("");
-  const [sType, setSType] = useState("simple_summary");
+  const context = useContext(AppContext);
+  let { wikiTitle, setWikiTitle, wikiURL, setWikiURL, wikiType, setWikiType, wikiSummary, setWikiSummary } = context;
   const [checker, setChecker] = useState(0);
-
+  
   const handleSubmit = (event) => {
     event.preventDefault();
+    form_ref.current.setAttribute("disabled", true); // Disable form
+    simplify_button.current.innerHTML = "Simplifying...";
     setChecker(1);
   };
 
@@ -20,35 +22,36 @@ const WikiForm = () => {
     }
   };
 
-  const [data, setData] = useState(null);
-
   useEffect(() => {
     if(checker === 0) return;
     async function fetchData() {
       const res = await fetch("/api/wiki");
       const json = await res.json();
+      const { title, summary } = json.result;
+      setWikiTitle(title);
+      setWikiSummary(summary);
       const status = res.status;
-      setData(json);
       handlePageChange(status);
-      console.log(json);
-      console.log(status);
     }
     fetchData();
   }, [checker]);
 
+  const simplify_button = useRef(null);
+  const form_ref = useRef(null);
+
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} ref={form_ref} disabled={true}>
       <div className="input-container">
         <input
           placeholder="https://en.wikipedia.org/wiki/__"
           name="w_link"
           className="link-input"
           type="url"
-          value={wLink}
-          onChange={(e) => setWLink(e.target.value)}
+          value={wikiURL}
+          onChange={(e) => setWikiURL(e.target.value)}
           required
         />
-        <button type="submit" id="submit-button" className="simplify-button">
+        <button ref={simplify_button} type="submit" id="submit-button" className="simplify-button">
           Simplify Article
         </button>
       </div>
@@ -59,8 +62,8 @@ const WikiForm = () => {
             name="s_type"
             type="radio"
             value="simple_summary"
-            checked={sType === "simple_summary"}
-            onChange={(e) => setSType(e.target.value)}
+            checked={wikiType === "simple_summary"}
+            onChange={(e) => setWikiType(e.target.value)}
           />
           <label htmlFor="simple_summary">Simplified Summary</label>
           <br />
@@ -71,8 +74,8 @@ const WikiForm = () => {
             name="s_type"
             type="radio"
             value="explained_like_5"
-            checked={sType === "explained_like_5"}
-            onChange={(e) => setSType(e.target.value)}
+            checked={wikiType === "explained_like_5"}
+            onChange={(e) => setWikiType(e.target.value)}
           />
           <label htmlFor="explained_like_5">Explained Like I'm 5</label>
           <br />
