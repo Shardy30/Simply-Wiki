@@ -82,18 +82,6 @@ const WikiForm = () => {
         <div className="radio-input-container">
           <div className="radio-container-1">
             <input
-              id="simple_summary"
-              name="s_type"
-              type="radio"
-              value="simple_summary"
-              checked={wikiType === "simple_summary"}
-              onChange={(e) => setWikiType(e.target.value)}
-            />
-            <label htmlFor="simple_summary">Simplified Summary</label>
-            <br />
-          </div>
-          <div className="radio-container-2">
-            <input
               id="explained_like_5"
               name="s_type"
               type="radio"
@@ -102,6 +90,18 @@ const WikiForm = () => {
               onChange={(e) => setWikiType(e.target.value)}
             />
             <label htmlFor="explained_like_5">Explained Like I'm 5</label>
+            <br />
+          </div>
+          <div className="radio-container-2">
+            <input
+              id="simple_summary"
+              name="s_type"
+              type="radio"
+              value="simple_summary"
+              checked={wikiType === "simple_summary"}
+              onChange={(e) => setWikiType(e.target.value)}
+            />
+            <label htmlFor="simple_summary">Simplified Summary</label>
             <br />
           </div>
         </div>

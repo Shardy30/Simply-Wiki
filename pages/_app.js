@@ -6,7 +6,7 @@ export default function App({ Component, pageProps }) {
   const [wikiTitle, setWikiTitle] = useState("");
   const [wikiURL, setWikiURL] = useState("");
   const [wikiSummary, setWikiSummary] = useState("");
-  const[wikiType, setWikiType] = useState("simple_summary");
+  const[wikiType, setWikiType] = useState("explained_like_5");
   return(
   <AppContext.Provider
     value={{

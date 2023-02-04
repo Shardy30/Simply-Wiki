@@ -212,7 +212,7 @@ body {
   margin-bottom: 30px;
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 502px) {
   .radio-input-container {
     display: flex;
     flex-direction: column;
@@ -228,11 +228,11 @@ body {
 }
 
 .radio-container-1 {
-  margin: 2px 5px 5px;
+  margin: 2px 20px 5px;
 }
 
 .radio-container-2 {
-  margin: 2px 5px;
+  margin: 2px 20px 5px;
 }
 
 a {
