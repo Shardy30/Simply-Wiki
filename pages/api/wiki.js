@@ -32,9 +32,9 @@ export default async function handler(req, res) {
     if (s_type === "simple_summary") {
       completion = await openai.createCompletion({
         model: "text-davinci-003",
-        prompt: `Explain the contents of the wikipedia article on "${w_title}" using simplified vocabulary. Go into significant detail while still maintaining vocabulary that can be understood by even children.`,
+        prompt: `Explain the contents of the article: "${w_link}" using simplified vocabulary. Go into significant detail while still maintaining vocabulary that can be understood by even children.`,
         temperature: 0,
-        max_tokens: 800,
+        max_tokens: 750,
         top_p: 1,
         frequency_penalty: 0.5,
         presence_penalty: 0,
