@@ -2,7 +2,7 @@
 export default async function handler(req, res) {
   const response = {
     title: "Hello World",
-    description: "This is a description",
+    description: process.env.TESTING,
   };
   res.status(200).send(response);
 }
