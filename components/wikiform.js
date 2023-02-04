@@ -36,19 +36,25 @@ const WikiForm = () => {
     if (checker === 0) return;
     async function fetchData() {
       const data = { w_link: wikiURL, s_type: wikiType };
-      const res = await fetch("/api/wiki", {
+      let status=500;
+      fetch("/api/wiki", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(data),
+      }).then(res => {
+        status = res.status;
+        return res.json();
+      }).then(json => {
+        const { title, summary } = json.result;
+        setWikiTitle(title);
+        setWikiSummary(summary);
+        handlePageChange(status);
+      }).catch(err => {
+        // Do something for an error here
+        console.log("Error Reading data " + err);
       });
-      const json = await res.json();
-      const { title, summary } = json.result;
-      setWikiTitle(title);
-      setWikiSummary(summary);
-      const status = res.status;
-      handlePageChange(status);
     }
     fetchData();
   }, [checker]);
