@@ -8,7 +8,7 @@ const Footer = () => {
       </h3>
       <p className="footer-links">
         <a href="https://github.com/Shardy30/Simply-Wiki">Github</a> |{" "}
-        <a href="https://shardy30.netlify.app/">Contact</a>
+        <a href="https://shardy30.vercel.app/">Contact</a>
       </p>
     </footer>
   );
