@@ -1,12 +1,9 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
-import { OpenAIApi, Configuration } from "openai";
+import OpenAIApi from "openai";
 import axios from "axios";
 
-const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
-});
-const openai = new OpenAIApi(configuration);
+const openai = new OpenAIApi({apiKey: process.env.OPENAI_API_KEY});
 
 export default async function handler(req, res) {
   let { w_link, s_type } = req.body;
@@ -29,33 +26,30 @@ export default async function handler(req, res) {
       throw new Error();
     }
     let completion;
+    console.log(wiki_info.slice(0, 10));
+    let prompt;
     if (s_type === "simple_summary") {
-      completion = await openai.createCompletion({
-        model: "text-davinci-003",
-        prompt: `Explain the contents of the article: "${w_link}" using simplified vocabulary. Go into significant detail while still maintaining vocabulary that can be understood by even children.`,
-        temperature: 0,
-        max_tokens: 750,
-        top_p: 1,
-        frequency_penalty: 0.5,
-        presence_penalty: 0,
-      });
+        prompt= `Explain the contents of the article: "${w_link}" using simplified vocabulary. Go into significant detail while still maintaining vocabulary that can be understood by even children.`;
     } else if (s_type === "explained_like_5") {
-      completion = await openai.createCompletion({
-        model: "text-davinci-003",
-        prompt: `Explain the contents of the article: "${w_link}" using the vocabulary of a 5 year old. Go into significant detail while still maintaining vocabulary that can be understood by a 5 year old child.`,
-        temperature: 0,
-        max_tokens: 750,
-        top_p: 1,
-        frequency_penalty: 0.5,
-        presence_penalty: 0,
-      });
+        prompt= `Explain the contents of the article: "${w_link}" using the vocabulary of a 5 year old. Go into significant detail while still maintaining vocabulary that can be understood by a 5 year old child.`;
     }
+    try {
+      completion = await openai.completions.create({
+      prompt: prompt,
+      model: 'gpt-3.5-turbo-instruct',
+      temperature: 0.7,
+      max_tokens: 750,
+    });
+    console.log('Generated completion:', completion.choices[0].text.trim());
+  } catch (error) {
+    console.error('Error:', error.message);
+  }
     w_title =
       wiki_response.data.query.pages[
         Object.keys(wiki_response.data.query.pages)[0]
       ].title;
-    let content_body = completion.data.choices[0].text;
-
+    let content_body = completion.choices[0].text;
+    console.log(content_body);
     while (content_body.slice(0, 1) === "\n") {
       content_body = content_body.slice(1);
     }
