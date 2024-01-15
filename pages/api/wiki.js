@@ -26,7 +26,7 @@ export default async function handler(req, res) {
       throw new Error();
     }
     let completion;
-    console.log(wiki_info.slice(0, 10));
+    // console.log(wiki_info.slice(0, 10));
     let prompt;
     if (s_type === "simple_summary") {
         prompt= `Explain the contents of the article: "${w_link}" using simplified vocabulary. Go into significant detail while still maintaining vocabulary that can be understood by even children.`;
@@ -40,7 +40,7 @@ export default async function handler(req, res) {
       temperature: 0.7,
       max_tokens: 750,
     });
-    console.log('Generated completion:', completion.choices[0].text.trim());
+    // console.log('Generated completion:', completion.choices[0].text.trim());
   } catch (error) {
     console.error('Error:', error.message);
   }
