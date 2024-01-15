@@ -1,6 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
-import OpenAIApi from "openai";
+import {OpenAIApi} from "openai";
 import axios from "axios";
 
 const openai = new OpenAIApi({apiKey: process.env.OPENAI_API_KEY});
