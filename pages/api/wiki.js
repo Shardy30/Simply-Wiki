@@ -1,9 +1,9 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
-import {OpenAIApi} from "openai";
+import OpenAI from "openai";
 import axios from "axios";
 
-const openai = new OpenAIApi({apiKey: process.env.OPENAI_API_KEY});
+const openai = new OpenAI({apiKey: process.env.OPENAI_API_KEY});
 
 export default async function handler(req, res) {
   let { w_link, s_type } = req.body;
@@ -40,7 +40,7 @@ export default async function handler(req, res) {
       temperature: 0.7,
       max_tokens: 750,
     });
-    // console.log('Generated completion:', completion.choices[0].text.trim());
+    console.log('Generated completion');
   } catch (error) {
     console.error('Error:', error.message);
   }
@@ -49,7 +49,7 @@ export default async function handler(req, res) {
         Object.keys(wiki_response.data.query.pages)[0]
       ].title;
     let content_body = completion.choices[0].text;
-    console.log(content_body);
+    // console.log(content_body);
     while (content_body.slice(0, 1) === "\n") {
       content_body = content_body.slice(1);
     }
